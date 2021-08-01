@@ -3,7 +3,9 @@ package com.bridgelabz.addressbook;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.bridgelabz.addressbook.CustomException.ExceptionsType;
 
@@ -80,20 +82,25 @@ public class AddressbookConsoleService
 			throw new CustomException(ExceptionsType.EMPTY_BOOK, "AddessBook is empty");
 		} else
 		{
-
-			for (Contacts contact : addressBooks.get(bookName))
+			try
 			{
-				if (contact.getFirstName().equals(name))
+				for (Contacts contact : addressBooks.get(bookName))
 				{
-					getDetails(contact);
-					is_found = true;
-					System.out.println("Contact Updated");
-					return addressBooks;
+					if (contact.getFirstName().equals(name))
+					{
+						getDetails(contact);
+						is_found = true;
+						System.out.println("Contact Updated");
+						return addressBooks;
+					}
 				}
 			}
+			catch (Exception e) 
+			{
+				throw new CustomException(ExceptionsType.NUll_VALUE,"No such addressBook");
+			}
 		}
-		if (!is_found)
-			contactNotPresent(is_found);
+		contactNotPresent(is_found);
 		return addressBooks;
 	}
 
@@ -138,5 +145,18 @@ public class AddressbookConsoleService
 		{
 			System.out.println("Contact not found");
 		}
+	}
+	
+	public List<Contacts> searchPerson(String searchKey)
+	{
+		for (String bookName : addressBooks.keySet())
+		{
+			LinkedList<Contacts> contactList  =  addressBooks.get(bookName);
+			 List<Contacts> contactHavingSameCityOrState = contactList.stream()
+			.filter(contact->contact.getState().equals(searchKey) || contact.getCity().equals(searchKey))
+			.collect(Collectors.toList());
+			 return contactHavingSameCityOrState;
+		}
+		return null;
 	}
 }

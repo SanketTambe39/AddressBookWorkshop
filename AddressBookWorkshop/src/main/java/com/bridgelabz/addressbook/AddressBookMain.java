@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain
@@ -8,7 +9,8 @@ public class AddressBookMain
 	private static final int EDIT_CONATCT = 2;
 	private static final int DISPLAY_CONATCT = 3;
 	private static final int DELETE_CONATCT = 4;
-	private static final int EXIT = 5;
+	private static final int SEARCH_CONTACT = 5;
+	private static final int EXIT = 6;
 
 	public static void main(String[] args) throws CustomException
 	{
@@ -19,7 +21,7 @@ public class AddressBookMain
 		{
 			System.out.println("Enter what you have to do");
 			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts"
-					+ "\n 4 Delete contact" + "\n 5 Exit" + "");
+					+ "\n 4 Delete contact" + "\n 5 Search on basis of city or state" + "\n 6 Exit");
 
 			int userChoice = scanner.nextInt();
 			switch (userChoice)
@@ -52,6 +54,19 @@ public class AddressBookMain
 				System.out.println("Enter Book name to which you have to delete contact");
 				String bookNameForDelete = scanner.next();
 				addressbookConsoleService.deleteContact(nameToDelete, bookNameForDelete);
+				break;
+
+			case SEARCH_CONTACT:
+				System.out.println("Enter the city or state which to be searched");
+				String searchKey = scanner.next();
+				List<Contacts> contactList = addressbookConsoleService.searchPerson(searchKey);
+				if (contactList.isEmpty())
+				{
+					System.out.println("There are no such contact");
+				} else
+				{
+					System.out.println(contactList);
+				}
 				break;
 
 			case EXIT:
