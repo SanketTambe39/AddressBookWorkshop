@@ -4,7 +4,7 @@ public class CustomException extends Exception
 {
 	public enum ExceptionsType
 	{
-		EMPTY_LIST, WRONG_INPUT, NUll_VALUE
+		EMPTY_BOOK, WRONG_INPUT, NUll_VALUE
 	}
 
 	public ExceptionsType type;
