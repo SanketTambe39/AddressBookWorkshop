@@ -7,8 +7,10 @@ public class AddressbookConsoleService
 {
 	String firstName, lastName, address, city, state, zip, phoneNumber;
 	Scanner scanner = new Scanner(System.in);
+	
+	LinkedList<Contacts> addressBook = new LinkedList<>(); 
 
-	public void createPerson()
+	public Contacts createContact()
 	{
 		Contacts contact = new Contacts();
 		System.out.println("Enter first name :: ");
@@ -29,7 +31,12 @@ public class AddressbookConsoleService
 		contact.setEmail(scanner.next());
 		scanner.close();
 		
-		System.out.println(contact);
+		return contact;
 		
+	}
+	public LinkedList<Contacts> addContacts(Contacts contact)
+	{
+		addressBook.add(contact);
+		return addressBook;
 	}
 }
