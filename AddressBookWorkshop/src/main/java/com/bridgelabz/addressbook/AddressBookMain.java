@@ -11,7 +11,8 @@ public class AddressBookMain
 	private static final int DELETE_CONATCT = 4;
 	private static final int SEARCH_CONTACT = 5;
 	private static final int VIEW_PERSON = 6;
-	private static final int EXIT = 7;
+	private static final int COUNT_PERSON = 7;
+	private static final int EXIT = 8;
 
 	public static void main(String[] args) throws CustomException
 	{
@@ -24,7 +25,8 @@ public class AddressBookMain
 			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts"
 					+ "\n 4 Delete contact" + "\n 5 Search Person on basis of city or state"
 					+ "\n 6 View Person on basis of city or state"
-					+ "\n 7 Exit");
+					+ "\n 7 Count number Of person in same city or state"
+					+ "\n 8 Exit");
 
 			int userChoice = scanner.nextInt();
 			switch (userChoice)
@@ -60,9 +62,7 @@ public class AddressBookMain
 				break;
 
 			case SEARCH_CONTACT:
-				System.out.println("Enter the city or state which to be searched");
-				String searchKeyToSearch = scanner.next();
-				List<Contacts> contactListToSearchPerson = addressbookConsoleService.searchPerson(searchKeyToSearch);
+				List<Contacts> contactListToSearchPerson = addressbookConsoleService.searchPerson(getSearchKey(scanner));
 				if(contactListToSearchPerson.isEmpty())
 				{
 					System.out.println("There are no such contact");
@@ -73,9 +73,7 @@ public class AddressBookMain
 				break;
 
 			case VIEW_PERSON:
-				System.out.println("Enter the city or state which to be searched");
-				String searchKeyToViewPerson = scanner.next();
-				List<Contacts> contactListToVIewPerson = addressbookConsoleService.searchPerson(searchKeyToViewPerson);
+				List<Contacts> contactListToVIewPerson = addressbookConsoleService.searchPerson(getSearchKey(scanner));
 				if(contactListToVIewPerson.isEmpty())
 				{					
 					System.out.println("There are no such contact");
@@ -84,6 +82,11 @@ public class AddressBookMain
 				{
 					System.out.println(contactListToVIewPerson);
 				}
+				break;
+
+			case COUNT_PERSON:
+				List<Contacts> contactListToCount = addressbookConsoleService.searchPerson(getSearchKey(scanner));
+				System.out.println("There are total "+contactListToCount.size()+" Contacts");
 				break;
 
 			case EXIT:
@@ -95,5 +98,11 @@ public class AddressBookMain
 				System.out.println("Enter a proper value");
 			}
 		}
+	}
+	private static String getSearchKey(Scanner scanner) 
+	{
+		System.out.println("Enter the city or state which to be searched");
+		String searchKey = scanner.next();
+		return searchKey;
 	}
 }
