@@ -18,8 +18,8 @@ public class AddressBookMain
 		while (true)
 		{
 			System.out.println("Enter what you have to do");
-			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts" + "\n 4 Delete contact"
-					+ "\n 5 Exit" + "");
+			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts"
+					+ "\n 4 Delete contact" + "\n 5 Exit" + "");
 
 			int userChoice = scanner.nextInt();
 			switch (userChoice)
@@ -36,10 +36,10 @@ public class AddressBookMain
 
 			case EDIT_CONATCT:
 				System.out.println("Enter a name of person of whom you waht to change data");
-				String nameToEdit  = scanner.next();
+				String nameToEdit = scanner.next();
 				System.out.println("Enter Book name to which you have to edit contact");
-				String bookNameToEdit  = scanner.next();
-				addressbookConsoleService.editContact(nameToEdit , bookNameToEdit);
+				String bookNameToEdit = scanner.next();
+				addressbookConsoleService.editContact(nameToEdit, bookNameToEdit);
 				break;
 
 			case DISPLAY_CONATCT:
@@ -48,10 +48,10 @@ public class AddressBookMain
 
 			case DELETE_CONATCT:
 				System.out.println("Enter a name of person of whom you want to delete conatct");
-				String nameToDelete  = scanner.next();
+				String nameToDelete = scanner.next();
 				System.out.println("Enter Book name to which you have to delete contact");
-				String bookNameForDelete  = scanner.next();
-				addressbookConsoleService.deleteContact(nameToDelete , bookNameForDelete);
+				String bookNameForDelete = scanner.next();
+				addressbookConsoleService.deleteContact(nameToDelete, bookNameForDelete);
 				break;
 
 			case EXIT:
