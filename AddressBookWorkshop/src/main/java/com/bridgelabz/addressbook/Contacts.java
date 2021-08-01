@@ -10,7 +10,7 @@ public class Contacts
 	private String zip;
 	private int phoneNumber;
 	private String email;
-	
+
 	public Contacts()
 	{
 	}
@@ -101,5 +101,5 @@ public class Contacts
 		return "Contacts [firstName=" + firstName + ", lastname=" + lastname + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
 	}
-	
+
 }
