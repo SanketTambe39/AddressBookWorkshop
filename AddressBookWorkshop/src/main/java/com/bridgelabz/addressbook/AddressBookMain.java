@@ -12,8 +12,8 @@ public class AddressBookMain
 		while (true)
 		{
 			System.out.println("Enter what you have to do");
-			System.out.println(
-					"" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts" + "\n 4 Exit" + "");
+			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts" + "\n 4 Delete"
+					+ "\n 5 Exit" + "");
 
 			int userChoice = scanner.nextInt();
 			switch (userChoice)
@@ -33,6 +33,11 @@ public class AddressBookMain
 				break;
 
 			case 4:
+				System.out.println("Enter a name of person of whom you want to delete conatct");
+				addressbookConsoleService.deleteContact(scanner.next());
+				break;
+
+			case 5:
 				scanner.close();
 				System.exit(0);
 				break;
