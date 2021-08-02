@@ -12,7 +12,8 @@ public class AddressBookMain
 	private static final int SEARCH_CONTACT = 5;
 	private static final int VIEW_PERSON = 6;
 	private static final int COUNT_PERSON = 7;
-	private static final int EXIT = 8;
+	private static final int SORT = 8;
+	private static final int EXIT = 9;
 
 	public static void main(String[] args) throws CustomException
 	{
@@ -23,10 +24,11 @@ public class AddressBookMain
 		{
 			System.out.println("Enter what you have to do");
 			System.out.println("" + " 1 Add Contact " + "\n 2 Edit Contact " + "\n 3 Display Contacts"
-					+ "\n 4 Delete contact" + "\n 5 Search Person on basis of city or state"
-					+ "\n 6 View Person on basis of city or state"
+					+ "\n 4 Delete contact" + "\n 5 Search Person in addressbook"
+					+ "\n 6 View details of Person from addressbook"
 					+ "\n 7 Count number Of person in same city or state"
-					+ "\n 8 Exit");
+					+ "\n 8 Sort Persons by name "
+					+ "\n 9 Exit");
 
 			int userChoice = scanner.nextInt();
 			switch (userChoice)
@@ -88,7 +90,11 @@ public class AddressBookMain
 				List<Contacts> contactListToCount = addressbookConsoleService.searchPerson(getSearchKey(scanner));
 				System.out.println("There are total "+contactListToCount.size()+" Contacts");
 				break;
-
+				
+			case SORT:
+				addressbookConsoleService.sortContacts();
+				break;
+				
 			case EXIT:
 				scanner.close();
 				System.exit(0);

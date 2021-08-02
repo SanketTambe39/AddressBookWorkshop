@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -85,7 +86,7 @@ public class AddressbookConsoleService
 			try
 			{
 				for (Contacts contact : addressBooks.get(bookName))
-				{
+				{	
 					if (contact.getFirstName().equals(name))
 					{
 						getDetails(contact);
@@ -93,8 +94,8 @@ public class AddressbookConsoleService
 						System.out.println("Contact Updated");
 						return addressBooks;
 					}
+					}
 				}
-			}
 			catch (Exception e) 
 			{
 				throw new CustomException(ExceptionsType.NUll_VALUE,"No such addressBook");
@@ -152,11 +153,21 @@ public class AddressbookConsoleService
 		for (String bookName : addressBooks.keySet())
 		{
 			LinkedList<Contacts> contactList  =  addressBooks.get(bookName);
-			 List<Contacts> contactHavingSameCityOrState = contactList.stream()
-			.filter(contact->contact.getState().equals(searchKey) || contact.getCity().equals(searchKey))
-			.collect(Collectors.toList());
-			 return contactHavingSameCityOrState;
+			List<Contacts> contactHavingSameCityOrState = contactList.stream()
+					.filter(contact->contact.getState().equals(searchKey) || contact.getCity().equals(searchKey))
+					.collect(Collectors.toList());
+			return contactHavingSameCityOrState;
 		}
 		return null;
 	}
+	public void sortContacts()
+	{
+		for (String bookName : addressBooks.keySet())
+		{
+			System.out.println(bookName);
+			LinkedList<Contacts> contatct = addressBooks.get(bookName);
+			contatct.stream().sorted(Comparator.comparing(Contacts::getFirstName)).forEach(contact->System.out.println(contact));
+		}
+	}
+
 }
